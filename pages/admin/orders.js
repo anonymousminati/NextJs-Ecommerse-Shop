@@ -124,7 +124,7 @@ export default function Orders() {
                           : "not delivered"}
                       </td>
                       <td className="p-5">
-                        <Link href={`/order/${order._id}`} passHref>
+                        <Link className="bg-slate-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2" href={`/order/${order._id}`} passHref>
                           Details
                         </Link>
                       </td>

@@ -142,7 +142,7 @@ export default function Users() {
                       <td className="p-5">{user.isAdmin ? "YES" : "NO"}</td>
                       <td className="p-5">
                         <Link
-                          className="default-button"
+                          className="bg-slate-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
                           href={`/admin/user/${user._id}`}
                         >
                           Edit
@@ -150,7 +150,7 @@ export default function Users() {
                         &nbsp;
                         <button
                           onClick={() => deletHandler(user._id)}
-                          className="default-button"
+                          className="bg-slate-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
                         >
                           Delete
                         </button>

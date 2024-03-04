@@ -9,6 +9,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DropdownLink from "./DropdownLink";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
+
 
 function Layout({ title, children }) {
   const router = useRouter();
@@ -49,7 +51,7 @@ function Layout({ title, children }) {
       <ToastContainer position="top-right" limit={1} />
       <div className="flex min-h-screen flex-col justify-between">
         <header>
-          <nav className="flex h-14 justify-between shadow-md  items-center px-4">
+          <nav className=" md:px-36 flex h-max justify-between shadow-md py-4 items-center px-4">
             <div className="flex items-center space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,43 +72,32 @@ function Layout({ title, children }) {
               </Link>
             </div>
 
-            <form
-              className="mx-auto  hidden w-full justify-center md:flex"
-              onSubmit={submitHandler}
-            >
-              <input
-                onChange={(e) => setQuery(e.target.value)}
-                type="text"
-                className="rounded-tr-none rounded-br-none p-1.5 text-sm  focus:ring-0"
-                placeholder="Search products"
-              />
-              <button
-                className="rounded rounded-tl-none rounded-bl-none bg-blue-400 p-1 text-sm dark:text-black"
-                type="submit"
-                id="button-addon2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"
-                    clipRule="evenodd"
-                  />
+
+
+            <form className="bg-white border border-2 items-center justify-between w-1/2  rounded-full shadow-lg p-2  hidden md:flex" style={{ top: '5px' }} onSubmit={submitHandler}>
+              <div>
+                <div className="p-2 mr-1 rounded-full hover:bg-gray-100 cursor-pointer">
+                  <svg className="h-6 w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <input className="font-bold uppercase rounded-full w-full py-4 pl-4 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs" type="text" placeholder="Search Product" onChange={(e) => setQuery(e.target.value)} />
+              <button id="button-addon2" className="bg-gray-600 p-2 hover:bg-blue-400 cursor-pointer mx-2 rounded-full">
+                <svg className="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                 </svg>
               </button>
             </form>
 
-            <div className="hidden md:flex">
+
+            <div className="hidden md:flex gap-5 justify-center items-center">
               {status === "loading" ? (
                 "Loading"
               ) : session?.user ? (
                 <Menu as="div" className="relative inline-block z-10">
-                  <Menu.Button className="text-blue-600">
-                    {session.user.name}
+                  <Menu.Button className="text-blue-600 flex gap-2 items-center">
+                    <FaUser className="border rounded-full border-2 border-blue-300" size={36} />{session.user.name}
                   </Menu.Button>
                   <Menu.Items className="absolute right-0 w-56 origin-top-right  p-2 bg-white shadow-lg rounded-t-lg rounded-b-lg ">
                     <Menu.Item>
@@ -139,10 +130,11 @@ function Layout({ title, children }) {
                   <span className="p-2">Login</span>
                 </Link>
               )}
-              <Link href="/cart">
-                <span className="p-2">Cart</span>
+              <Link href="/cart" className="relative">
+                <span className="flex gap-x-2"><FaShoppingCart color="#40679E" />
+                </span>
                 {cardItemsCount > 0 ? (
-                  <span className="rounded-full bg-red-600 p-2 py-1 text-xs font-bold text-white">
+                  <span className="absolute -top-2 -right-2 rounded-full bg-red-600 px-[4px] text-xs font-bold text-white">
                     {cardItemsCount}
                   </span>
                 ) : null}
@@ -174,11 +166,10 @@ function Layout({ title, children }) {
           </nav>
           <div
             id="mobile-menu"
-            className={`${
-              toggle === false ? "hidden" : ""
-            } md:hidden flex flex-col my-3 mx-3 p-2 bg-gray-50 rounded-md  shadow-md`}
+            className={`${toggle === false ? "hidden" : ""
+              } md:hidden flex flex-col my-3 mx-3 p-2 bg-gray-50 rounded-md  shadow-md`}
           >
-            <form
+            {/* <form
               className="py-4 px-4 text-sm mx-auto flex"
               onSubmit={submitHandler}
             >
@@ -206,8 +197,22 @@ function Layout({ title, children }) {
                   />
                 </svg>
               </button>
+            </form> */}
+            <form className="bg-white border border-2 items-center justify-between w-full mb-3 rounded-full shadow-lg p-2  flex md:hidden" style={{ top: '5px' }} onSubmit={submitHandler}>
+              <div>
+                <div className="p-2 mr-1 rounded-full hover:bg-gray-100 cursor-pointer">
+                  <svg className="h-6 w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <input className="font-bold uppercase rounded-full w-full py-4 pl-4 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline lg:text-sm text-xs" type="text" placeholder="Search Product" onChange={(e) => setQuery(e.target.value)} />
+              <button id="button-addon2" className="bg-gray-600 p-2 hover:bg-blue-400 cursor-pointer mx-2 rounded-full">
+                <svg className="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                </svg>
+              </button>
             </form>
-
             <div className="flex flex-col space-y-3 mx-auto">
               <div>
                 <Link href="/cart">
@@ -278,9 +283,19 @@ function Layout({ title, children }) {
         <main className="container m-auto mt-4 xl:px-14 md:px-12 px-8">
           {children}
         </main>
-        <footer className="flex h-10 justify-center items-center shadow-inner">
+        {/* <footer className="flex h-10 justify-center items-center shadow-inner">
           <p>Made with ❤️ in India</p>
+        </footer> */}
+
+
+        <footer className="bg-white rounded-lg shadow m-4 ">
+          <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+            <span className="text-sm text-gray-500 sm:text-center ">© 2023 <a href="https://github.com/anonymousminati" className="hover:underline">Prathamesh Malode</a>. All Rights Reserved.
+            </span>
+
+          </div>
         </footer>
+
       </div>
     </>
   );

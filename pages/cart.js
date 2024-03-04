@@ -99,30 +99,31 @@ function Cart() {
               </tbody>
             </table>
           </div>
-          <div className="card p-5">
+
+          <div className="card p-5 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 border-2">
             <ul>
               <li>
                 <div className="pb-3 text-xl">
                   Subtotal (
-                  {cartItems.reduce((total, item) => total + item.quantity, 0)}){" "}
-                  :{" "}
+                  {cartItems.reduce((total, item) => total + item.quantity, 0)}) :{" "}
                   {cartItems.reduce(
                     (total, item) => total + item.quantity * item.price,
                     0
-                  )}{" "}
-                  ₹
+                  )} ₹
                 </div>
               </li>
               <li>
                 <button
+                  type="button"
                   onClick={() => router.push("login?redirect=/shipping")}
-                  className="primary-button w-full"
+                  className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 shadow-md hover:shadow-lg transition duration-300"
                 >
                   Check Out
                 </button>
               </li>
             </ul>
           </div>
+
         </div>
       )}
     </Layout>

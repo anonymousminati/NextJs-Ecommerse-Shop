@@ -149,13 +149,10 @@ export default function Products() {
           <div className="flex justify-between">
             <h1 className="mb-4 text-xl">Admin Dashboard</h1>
             {loadingDelete && <div>Deleting item...</div>}
-            <button
-              disabled={loadingCreate}
-              onClick={createHandler}
-              className="primary-button"
-            >
-              {loadingCreate ? "Loading" : "Create"}
-            </button>
+
+            <button type="button" disabled={loadingCreate}
+              onClick={createHandler} className="  text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> {loadingCreate ? "Loading" : "Create"}</button>
+
           </div>
 
           {loading ? (
@@ -187,7 +184,7 @@ export default function Products() {
                       <td className="p-5">{product.rating}</td>
                       <td className="p-5">
                         <Link
-                          className="default-button"
+                          className="bg-slate-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
                           href={`/admin/product/${product._id}`}
                         >
                           Edit
@@ -196,7 +193,7 @@ export default function Products() {
                         <button
                           successDelete
                           onClick={() => deletHandler(product._id)}
-                          className="default-button"
+                          className="bg-slate-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
                         >
                           Delete
                         </button>
